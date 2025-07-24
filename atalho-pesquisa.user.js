@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         A93 Atalhos de pesquisa int6 ALT/GGNET
-// @version      1.1
+// @version      1.2
 // @description  Adiciona botões de atalho para seleção rápida de Nome | Código | CPF | CNPJ na pesquisa de clientes
 // @author       Luiz Toledo
 // @match        https://integrator6.gegnet.com.br/*
@@ -25,6 +25,10 @@
     ];
 
     function inserirBotoes() {
+
+        const titulo = Array.from(document.querySelectorAll('.panel-title')).find(el => el.textContent.includes('Pesquisar Cliente'));
+        if (!titulo) return;
+
         const form = document.querySelector('form.form-horizontal');
         if (!form) return;
         if (document.getElementById('search-shortcuts')) return;
@@ -55,6 +59,7 @@
             });
             wrapper.appendChild(btn);
         });
+
 
         form.insertBefore(wrapper, form.firstChild);
     }
