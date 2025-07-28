@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         A93 Atalhos de pesquisa int6 ALT/GGNET
-// @version      1.2
+// @version      1.3
 // @description  Adiciona botões de atalho para seleção rápida de Nome | Código | CPF | CNPJ na pesquisa de clientes
 // @author       Luiz Toledo
 // @match        https://integrator6.gegnet.com.br/*
@@ -18,15 +18,16 @@
     console.log('[AtalhosPesquisa] script iniciado');
 
     const campos = [
-        { label: 'Nome',   value: 'nome_cli' },
-        { label: 'Código', value: 'codcli'   },
-        { label: 'CPF',    value: 'cpf'      },
-        { label: 'CNPJ',   value: 'cnpj'     }
+        { label: 'Nome',            value: 'nome_cli'     },
+        { label: 'Código',          value: 'codcli'       },
+        { label: 'CPF',             value: 'cpf'          },
+        { label: 'CNPJ',            value: 'cnpj'         },
+        { label: 'E-mail',  value: 'cl.e_mail'    }
     ];
 
     function inserirBotoes() {
-
-        const titulo = Array.from(document.querySelectorAll('.panel-title')).find(el => el.textContent.includes('Pesquisar Cliente'));
+        const titulo = Array.from(document.querySelectorAll('.panel-title'))
+                             .find(el => el.textContent.includes('Pesquisar Cliente'));
         if (!titulo) return;
 
         const form = document.querySelector('form.form-horizontal');
@@ -59,7 +60,6 @@
             });
             wrapper.appendChild(btn);
         });
-
 
         form.insertBefore(wrapper, form.firstChild);
     }
